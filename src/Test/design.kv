@@ -1,0 +1,17 @@
+MDScreenManager
+    Home:
+
+<Home>
+    # StackLayout to arrange widgets vertically
+    StackLayout:
+
+        # MDTopAppBar with correct positioning
+        MDTopAppBar:
+            title: "Test"
+            pos_hint: {"top": 1}  # Set top position at 1
+
+        FloatLayout:
+            MDRoundFlatButton:
+                text: "Chose Dir"
+                pos_hint: {"x": .5, "y": .5}
+                on_release: root.choose_dir()

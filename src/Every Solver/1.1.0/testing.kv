@@ -1,0 +1,65 @@
+WindowManager:
+    Home:
+    Heugebra:
+
+<Home>:
+    name: "Home"
+
+
+    FloatLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Every Solver"
+            pos_hint: {"x": 0,"y": 0.9}
+
+        FloatLayout:
+            size: 500,400
+
+            MDTextField:
+                id: Equ
+                hint_text: "Insert the Equation"
+                size_hint: None,None
+                width: 200
+                pos_hint: {"x": 0.3,"y": 0.4}
+                on_text_validate: root.get_data()
+            MDLabel:
+                id: Eq_anser
+                text: ""
+                pos_hint: {"x": 0.1,"y": 0.3}
+            MDRoundFlatButton:
+                text: "Cal"
+                pos_hint: {"x": 0.8,"y": 0.4}
+                on_press: root.get_data()
+            MDRoundFlatButton:
+                text: "Expand"
+                pos_hint: {"X": 0.4, "y": 0.4}
+                on_press: root.expand()
+            MDRoundFlatButton:
+                text: "Draw"
+                pos_hint: {"x": 0.4,"y": 0.35}
+                on_release:
+                    app.root.current = "Heugebra"
+                    root.manager.transition.direction = "left"
+            MDSegmentedControl:
+                id: seg_ctrl
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                on_active: root.calculas(*args)
+                MDSegmentedControlItem:
+                    text: "Diff"
+                MDSegmentedControlItem:
+                    text: "Integral"
+<Heugebra>:
+    name: "Heugebra"
+
+    MDRoundFlatButton:
+        text: "Back to Home"
+        pos_hint: {"x": 0.3, "y": 0.1}
+        on_release:
+            app.root.current = "Home"
+            root.manager.transition.direction = "right"
+    MDRoundFlatButton:
+        text: "Open Web"
+        pos_hint: {"x": 0.3, "y": 0.5}
+        on_press: root.open_web()
+

@@ -1,0 +1,258 @@
+WindowManager:
+    Home:
+    Solver:
+    Heugebra:
+    
+<Home>
+    name: "Home"
+
+    # StackLayout to arrange widgets vertically
+    StackLayout:
+
+        # MDTopAppBar with correct positioning
+        MDTopAppBar:
+            title: "Every Solver"
+            pos_hint: {"top": 1}  # Set top position at 1
+
+        # MDTabs with adjusted positioning
+        MDTabs:
+            tab_pos: "top_mid"
+            tab_width: self.width/6
+            # Remove unnecessary pos_hint as it's stacked
+
+            ASTab:
+                title: "Asciilator"
+
+                FloatLayout:
+
+                    MDLabel:
+                        text: ""
+                        id: ans
+                        pos_hint: {"center_x": .51,"center_y": .9}
+
+                    MDCard:
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        size_hint: .95, .6
+
+                        FloatLayout:
+                            MDRoundFlatButton:
+                                text: "Calc"
+                                pos_hint: {"x": .8, "y": .45}
+                                on_release: root.get_ascii_data()
+                            MDTextField:
+                                id: input
+                                hint_text: "Insert the code"
+                                size_hint: None,None
+                                width: '200dp'
+                                pos_hint: {"x": .1, "y": .4}
+                                on_text_validate: root.get_ascii_data()
+
+            EETab:
+                title: "Electrical Equations"
+
+                MDTabs:
+                    TETab:
+                        title: "Technical Equations"
+
+                        GridLayout:
+                            cols: 2
+                            rows: 3
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Resonant Frequency"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.res_freq")
+
+                            MDRoundFlatButton:
+                                text: "Invers Resonant Frequency"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.inv_res_freq")
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Capacitive reactance"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.Cap_Rea")
+
+                            MDRoundFlatButton:
+                                text: "Inductive reactance"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.Ind_Rea")
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "LPF frequency"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.LPF")
+
+                            MDRoundFlatButton:
+                                text: "HPF frequency"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.HPF")
+
+                    PETab:
+                        title: "Physical Equations"
+
+                        GridLayout:
+                            cols: 2
+                            rows: 3
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Ohm's Law"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.Ohms_Law")
+
+                            MDRoundFlatButton:
+                                text: "Photon Energy"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("QubitWhiz.PhE")
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Electrical Power"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.Elec_Enrg")
+
+                            MDRoundFlatButton:
+                                text: "Electrical Energy"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.Elec_Enrg")
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Coulomb's Law"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.Ohms_Law")
+
+                            MDRoundFlatButton:
+                                text: "Electric Field Strength"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("Elec_Equ.coulombs_law")
+
+            HeuTab:
+                title: "Heugebra"
+
+                FloatLayout:
+                    size: 500,400
+
+                    MDTextField:
+                        id: Equ
+                        hint_text: "Insert the Equation"
+                        size_hint: None,None
+                        width: 200
+                        pos_hint: {"x": 0.3,"y": 0.5}
+                        on_text_validate: root.get_data()
+                    MDLabel:
+                        id: Eq_anser
+                        text: ""
+                        pos_hint: {"x": 0.1,"y": 0.4}
+                    MDRoundFlatButton:
+                        text: "Cal"
+                        pos_hint: {"x": 0.8,"y": 0.5}
+                        on_press: root.get_data()
+                    MDRoundFlatButton:
+                        text: "Expand"
+                        pos_hint: {"X": 0.4, "y": 0.5}
+                        on_press: root.expand()
+                    MDRoundFlatButton:
+                        text: "Open web site"
+                        pos_hint: {"x": 0.35,"y": 0.45}
+                        on_release: root.open_web()
+                    MDSegmentedControl:
+                        id: seg_ctrl
+                        pos_hint: {"center_x": 0.5, "center_y": 0.7}
+                        on_active: root.calculas(*args)
+                        MDSegmentedControlItem:
+                            text: "Diff"
+                        MDSegmentedControlItem:
+                            text: "Integral"
+
+            EncTab:
+                title: "Encryption"
+
+                FloatLayout:
+
+                    MDLabel:
+                        text: ""
+                        id: dir_ans
+                        pos_hint: {"center_x": .51,"center_y": .9}
+
+                    MDCard:
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        size_hint: .95, .6
+
+                        FloatLayout:
+                            MDRoundFlatButton:
+                                text: "Calc"
+                                pos_hint: {"x": .8, "y": .45}
+                                on_release: root.get_dir()
+                            MDTextField:
+                                id: dir_input
+                                hint_text: "Insert the code"
+                                size_hint: None,None
+                                width: '200dp'
+                                pos_hint: {"x": .1, "y": .4}
+                                on_text_validate: root.get_dir()
+
+<Solver@Solve>
+    name: "Solve"
+
+    MDCard:
+        size_hint: .95, .6
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+
+        FloatLayout:
+            orientation: "vertical"
+            size: 500, 400
+
+            MDTextField:
+                id: Solve
+                hint_text: "Insert the valuse"
+                size_hint: None,None
+                width: 200
+                pos_hint: {"x": 0.2,"y": 0.5}
+                on_text_validate: root.Sol()
+            MDLabel:
+                id: anser
+                text: "Test"
+                pos_hint: {"center_x": 0.5,"center_y": 0.95}
+            MDRoundFlatButton:
+                text: "Cal"
+                size_hint: None, None
+                width: 50
+                height: 10
+                pos_hint: {"x": 0.61,"y": 0.5}
+                font_size: 32
+                on_release: root.Sol()
+    MDRoundFlatButton:
+        text: "Exit"
+        pos_hint: {"center_x": 0.5,"center_y": 0.1}
+        on_release:
+            app.root.current = "Home"
+            root.manager.transition.direction = "right"

@@ -1,0 +1,382 @@
+WindowManager:
+    Home:
+    Solver:
+    Heugebra:
+    
+<Home>
+    name: "Home"
+
+    # StackLayout to arrange widgets vertically
+    StackLayout:
+
+        # MDTopAppBar with correct positioning
+        MDTopAppBar:
+            title: "Every Solver"
+            pos_hint: {"top": 1}  # Set top position at 1
+
+        # MDTabs with adjusted positioning
+        MDTabs:
+            tab_pos: "top_mid"
+            tab_width: self.width/6
+            # Remove unnecessary pos_hint as it's stacked
+
+            CMTab:
+                title: "Classical Physics"
+                
+                GridLayout:
+                    cols: 2
+                    rows: 5
+
+                    #row
+                    MDRoundFlatButton: 
+                        text: "Calculate Velocity"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.VLCT")
+                        
+                    MDRoundFlatButton: 
+                        text: "Calculate Momentum"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.MNT")
+
+                    #row
+                    MDRoundFlatButton: 
+                        text: "Newton's Law of Unevirsal Gravitation"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.grav")
+                        
+                    MDRoundFlatButton: 
+                        text: "Free Fall Acceleration"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.FFA")
+
+                    #row
+                    MDRoundFlatButton: 
+                        text: "Schwarzschild Radius"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.Rs")
+                        
+                    MDRoundFlatButton: 
+                        text: "Escape Velocity"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.EVC")
+
+                    #row
+                    MDRoundFlatButton: 
+                        text: "Kinatek Energy"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.KE")
+                        
+                    MDRoundFlatButton: 
+                        text: "Potential Energy"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.PoE")
+
+                    #row
+                    MDRoundFlatButton: 
+                        text: "Buoyant Force"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Cl_Mec.BYF")
+                        
+                    MDRoundFlatButton: 
+                        text: "Pressure"
+            MPTab:
+                title: "Modern Physics"
+
+                MDTabs:
+                    RETab:
+                        title: "Special Relativity"
+
+                        GridLayout:
+                            cols: 2
+                            rows: 4
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Mass–Energy Equivalence"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.MEE")
+
+                            MDRoundFlatButton:
+                                text: "Rest Mass"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.RsM")
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Relativistic Mass"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.ReM")
+
+                            MDRoundFlatButton:
+                                text: "Relativistic Time"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.TS")                            
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Relativistic Length"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.LC")
+
+                            MDRoundFlatButton:
+                                text: "Relative Kinatek Energy"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.RKE")                            
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Velocity-addition formula"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.VAF")
+
+                            MDRoundFlatButton:
+                                text: "Gravitational time dilation"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("LorentzTrans.GTD")
+                    QUTab:
+                        title: "Quantum Mechanics"
+
+                        GridLayout:
+                            cols: 2
+                            rows: 2
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Photon Energy"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("QubitWhiz.PhE")
+
+                            MDRoundFlatButton:
+                                text: "Photon Momentum"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("QubitWhiz.PhM")                            
+
+                            #row
+                            MDRoundFlatButton:
+                                text: "Wien's Law"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("QubitWhiz.WI_LAW")
+
+                            MDRoundFlatButton:
+                                text: "Uncertainty Principle"
+                                on_release:
+                                    app.root.current = "Solve"
+                                    root.manager.transition.direction = "left"
+                                    root.update_variable("QubitWhiz.UCP")
+            EETab:
+                title: "Electrical Equations"
+
+                GridLayout:
+                    cols: 2
+                    rows: 5
+
+                    #row
+                    MDRoundFlatButton:
+                        text: "Ohm's Law"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.Ohms_Law")
+
+                    MDRoundFlatButton:
+                        text: "Resistors Collector"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.Resis_collector")
+
+                    #row
+                    MDRoundFlatButton:
+                        text: "Electrical Power"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.Elec_Enrg")
+
+                    MDRoundFlatButton:
+                        text: "Electrical Energy"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.Elec_Enrg")
+
+                    #row
+                    MDRoundFlatButton:
+                        text: "Resonant Frequency"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.res_freq")
+
+                    MDRoundFlatButton:
+                        text: "Invers Resonant Frequency"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.inv_res_freq")
+
+                    #row
+                    MDRoundFlatButton:
+                        text: "Capacitive reactance"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.Cap_Rea")
+
+                    MDRoundFlatButton:
+                        text: "Inductive reactance"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.Ind_Rea")
+
+                    #row
+                    MDRoundFlatButton:
+                        text: "Coulomb's Law"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.Ohms_Law")
+
+                    MDRoundFlatButton:
+                        text: "Electric Field Strength"
+                        on_release:
+                            app.root.current = "Solve"
+                            root.manager.transition.direction = "left"
+                            root.update_variable("Elec_Equ.coulombs_law")
+
+            HeuTab:
+                title: "Heugebra"
+
+                FloatLayout:
+                    size: 500,400
+
+                    MDTextField:
+                        id: Equ
+                        hint_text: "Insert the Equation"
+                        size_hint: None,None
+                        width: 200
+                        pos_hint: {"x": 0.3,"y": 0.4}
+                        on_text_validate: root.get_data()
+                    MDLabel:
+                        id: Eq_anser
+                        text: ""
+                        pos_hint: {"x": 0.1,"y": 0.3}
+                    MDRoundFlatButton:
+                        text: "Cal"
+                        pos_hint: {"x": 0.8,"y": 0.4}
+                        on_press: root.get_data()
+                    MDRoundFlatButton:
+                        text: "Expand"
+                        pos_hint: {"X": 0.4, "y": 0.4}
+                        on_press: root.expand()
+                    MDRoundFlatButton:
+                        text: "Draw"
+                        pos_hint: {"x": 0.4,"y": 0.35}
+                        on_release:
+                            app.root.current = "Heugebra"
+                            root.manager.transition.direction = "left"
+                    MDSegmentedControl:
+                        id: seg_ctrl
+                        pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                        on_active: root.calculas(*args)
+                        MDSegmentedControlItem:
+                            text: "Diff"
+                        MDSegmentedControlItem:
+                            text: "Integral"
+
+            EncTab:
+                title: "Encryption"
+
+<Solver@Solve>
+    name: "Solve"
+
+    MDCard:
+        size_hint: None,None
+        size: 500, 400
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+
+        FloatLayout:
+            orientation: "vertical"
+            size: 500, 400
+
+            MDTextField:
+                id: Solve
+                hint_text: "Insert the valuse"
+                size_hint: None,None
+                width: 200
+                pos_hint: {"x": 0.2,"y": 0.5}
+                on_text_validate: root.Sol()
+            MDLabel:
+                id: anser
+                text: ""
+                pos_hint: {"center_x": 0.75,"center_y": 0.05}
+            MDRoundFlatButton:
+                text: "Cal"
+                size_hint: None, None
+                width: 50
+                height: 10
+                pos_hint: {"x": 0.61,"y": 0.5}
+                font_size: 32
+                on_release: root.Sol()
+    MDRoundFlatButton:
+        text: "Exit"
+        pos_hint: {"center_x": 0.5,"center_y": 0.1}
+        on_release:
+            app.root.current = "Home"
+            root.manager.transition.direction = "right"
+
+<Heugebra>:
+    name: "Heugebra"
+
+    MDRoundFlatButton:
+        text: "Back to Home"
+        pos_hint: {"x": 0.3, "y": 0.1}
+        on_release:
+            app.root.current = "Home"
+            root.manager.transition.direction = "right"
+    MDRoundFlatButton:
+        text: "Open Web"
+        pos_hint: {"x": 0.3, "y": 0.5}
+        on_press: root.open_web()
+

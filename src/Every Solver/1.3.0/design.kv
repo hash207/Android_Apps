@@ -13,12 +13,12 @@ WindowManager:
         MDTopAppBar:
             title: "Every Solver"
             pos_hint: {"top": 1}  # Set top position at 1
+            right_action_items: [["theme-light-dark", app.toggle_theme_style]]
 
         # MDTabs with adjusted positioning
         MDTabs:
             tab_pos: "top_mid"
             tab_width: self.width/6
-            # Remove unnecessary pos_hint as it's stacked
 
             ASTab:
                 title: "Asciilator"

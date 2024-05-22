@@ -223,36 +223,47 @@ WindowManager:
 <Solver@Solve>
     name: "Solve"
 
-    MDCard:
-        size_hint: .95, .6
-        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+    # StackLayout to arrange widgets vertically
+    StackLayout:
+
+        # MDTopAppBar with correct positioning
+        MDTopAppBar:
+            title: "Every Solver"
+            pos_hint: {"top": 1}  # Set top position at 1
+            right_action_items: [["theme-light-dark", app.toggle_theme_style]]
 
         FloatLayout:
-            orientation: "vertical"
-            size: 500, 400
+            MDCard:
+                size_hint: .95, .6
+                pos_hint: {"center_x": 0.5,"center_y": 0.55}
 
-            MDTextField:
-                id: Solve
-                hint_text: "Insert the valuse"
-                size_hint: None,None
-                width: 200
-                pos_hint: {"x": 0.2,"y": 0.5}
-                on_text_validate: root.Sol()
-            MDLabel:
-                id: anser
-                text: "Test"
-                pos_hint: {"center_x": 0.5,"center_y": 0.95}
+                FloatLayout:
+                    orientation: "vertical"
+                    size: 500, 400
+
+                    MDTextField:
+                        id: Solve
+                        hint_text: "Insert the valuse"
+                        size_hint: None,None
+                        width: 400
+                        mode: "rectangle"
+                        pos_hint: {"x": 0.15,"y": 0.5}
+                        on_text_validate: root.Sol()
+                    MDLabel:
+                        id: anser
+                        text: ""
+                        pos_hint: {"center_x": 0.5,"center_y": 0.95}
+                    MDRoundFlatButton:
+                        text: "Cal"
+                        size_hint: None, None
+                        width: 50
+                        height: 10
+                        pos_hint: {"x": 0.7,"y": 0.5}
+                        font_size: 32
+                        on_release: root.Sol()
             MDRoundFlatButton:
-                text: "Cal"
-                size_hint: None, None
-                width: 50
-                height: 10
-                pos_hint: {"x": 0.61,"y": 0.5}
-                font_size: 32
-                on_release: root.Sol()
-    MDRoundFlatButton:
-        text: "Exit"
-        pos_hint: {"center_x": 0.5,"center_y": 0.1}
-        on_release:
-            app.root.current = "Home"
-            root.manager.transition.direction = "right"
+                text: "Exit"
+                pos_hint: {"center_x": 0.5,"center_y": 0.15}
+                on_release:
+                    app.root.current = "Home"
+                    root.manager.transition.direction = "right"

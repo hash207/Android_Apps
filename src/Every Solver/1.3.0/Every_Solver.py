@@ -1,6 +1,7 @@
 from re import *
 import sympy as sp
 from math import *
+import requests
 
 __version__ = "1.0.0"
 
@@ -35,6 +36,28 @@ pi, C, G, lb, Da, crs = Cons()
 vp, v_p, k = electrical_cons()
 
 H, H_bar, PL, PT, PM, P_CH, eV, WC = quantum_cons()
+
+class Gemini():
+    headers = {'Content-Type': 'application/json'}
+    data = lambda self,text: {"contents": [{"parts": [{"text": text}]}]}
+    API = "gei-tour-own-api"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={API}"
+
+
+    def __init__(self, ans: str):
+        self.response = requests.post(self.url, headers=self.headers, json= self.data(ans))
+        self.response_data = self.response.json()
+
+    def __str__(self):
+        if self.response.status_code == 200:
+            return self.response_data['candidates'][0]['content']['parts'][0]['text']
+        else: return f"Error: API request failed with status code {self.response.status_code}"
+
+def gemini_extract(equ):
+    ans = str(Gemini(f"Give me the coefficients of this equation in a Python list {equ}"))
+    
+    nums = ans[ans.index("[")+1:ans.index("]")].replace(" ", "")
+    return nums
 
 class ExtractError(Exception):...
 
@@ -1148,18 +1171,10 @@ class Extract:
 
     def __str__(self):
         if self.string.find('(') == -1:
-            if self.string.find('^4') != -1:
-                a,b,c,d,e = self.EX_FRTH(self.string)[0],self.EX_FRTH(self.string)[1],self.EX_FRTH(self.string)[2],self.EX_FRTH(self.string)[3],self.EX_FRTH(self.string)[4]
-                return f"{a},{b},{c},{d},{e}"
-            if self.string.find('^3') != -1:
-                return f"{self.EX_CUB(self.string)[0]},{self.EX_CUB(self.string)[1]},{self.EX_CUB(self.string)[2]},{self.EX_CUB(self.string)[3]}"
-            elif self.string.find('^2') != -1:
-                if len(findall(r"\^2",self.string)) == 2:
-                    return f"{self.EX_CIR(self.string)[0]},{self.EX_CIR(self.string)[1]},{self.EX_CIR(self.string)[2]}"
-                else:
-                    return f"{self.EX_QUD(self.string)[0]},{self.EX_QUD(self.string)[1]},{self.EX_QUD(self.string)[2]}"
+            if len(findall(r"\^2",self.string)) == 2:
+                return f"{self.EX_CIR(self.string)[0]},{self.EX_CIR(self.string)[1]},{self.EX_CIR(self.string)[2]}"
             else:
-                return f"{self.EX_LIN(self.string)[0]},{self.EX_LIN(self.string)[1]}"
+                return gemini_extract(self.string)
         else:
             self.string = self.expand_brackets(self.string)
             if self.string.find('^4') != -1:
@@ -1397,6 +1412,6 @@ class CalcChamp:
                 return str(eval(self.string))
 
 if __name__ == "__main__":
-    x = ''
+    x = 'x^3+3x^2+3x+1'
 
     print(CalcChamp(x))

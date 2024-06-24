@@ -1,7 +1,6 @@
 from Every_Solver import *
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from plyer import filechooser
 from kivy.core.window import Window
 from webbrowser import open as _open
 from kivymd.uix.tab import MDTabsBase
@@ -40,13 +39,6 @@ class Home(MDScreen):
         calc = calc._get_text()
         x = self.ids.Equ.text
         self.ids.Eq_anser.text = str(CalcChamp.Diff(x) if calc == "Diff" else CalcChamp.Int(x))
-
-    # def get_dir(self):
-    #     try:
-    #         _dir = get_open_file()
-    #         self.ids.dir_ans.text = _dir
-    #     except Exception as e:
-    #         self.ids.dir_ans.text = str(e)
 
     def open_web(self):
         _open('https://sites.google.com/view/every-solver')

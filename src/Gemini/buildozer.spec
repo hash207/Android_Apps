@@ -37,14 +37,14 @@ version = 1.1.0
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = kivy==2.3.0,kivymd==1.1.1,pillow==10.2.0,google-genai
+requirements = kivy==2.3.0,kivymd==1.1.1,pillow==10.2.0,google-genai,pydantic
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-#presplash.filename = ./Project/icon.png
+presplash.filename = ./start.json
 
 # (str) Icon of the application
 icon.filename = ./icon.png

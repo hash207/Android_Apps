@@ -1,22 +1,39 @@
-import requests
+import os
+from google import genai
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.core.window import Window 
 from kivymd.uix.screen import MDScreen
 
+api_key = os.environ["GEMINI_API_KEY"]
+
 class Gemini():
-    headers = {'Content-Type': 'application/json'}
-    data = lambda self,text: {"contents": [{"parts": [{"text": text}]}]}
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=you-api-key"
+    def __init__(self, content: str, image: str=None):
 
-    def __init__(self, ans: str):
-        self.response = requests.post(self.url, headers=self.headers, json= self.data(ans))
-        self.response_data = self.response.json()
+        client = genai.Client(api_key=api_key)
 
+        if not image:
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=content,
+            )
+            
+            self.answer = response.text
+        else:
+            with open(image, 'rb') as f:
+                image_bytes = f.read()
+
+            response = client.models.generate_content(
+                model='gemini-2.5-flash',
+                contents=[
+                    genai.types.Part.from_bytes(data=image_bytes, mime_type='image/png'),
+                    content
+                ]
+            )
+            
+            self.answer = response.text
     def __str__(self):
-        if self.response.status_code == 200:
-            return self.response_data['candidates'][0]['content']['parts'][0]['text']
-        else: return f"Error: API request failed with status code {self.response.status_code}"
+        return self.answer
 
 class Home(MDScreen):
     def get_gem(self):

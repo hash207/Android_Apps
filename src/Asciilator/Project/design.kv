@@ -1,0 +1,37 @@
+MDScreenManager:
+    Home:
+
+<Home>:
+    name: "Home"
+
+    # StackLayout to arrange widgets vertically
+    StackLayout:
+
+        # MDTopAppBar with correct positioning
+        MDTopAppBar:
+            title: "Asciilator"
+            pos_hint: {"top": 1}  # Set top position at 1
+
+        FloatLayout:
+
+            MDLabel:
+                text: ""
+                id: ans
+                pos_hint: {"center_x": .5,"center_y": .9}
+
+            MDCard:
+                pos_hint: {"center_x": .5, "center_y": .5}
+                size_hint: .95, .5
+
+                FloatLayout:
+                    MDRoundFlatButton:
+                        text: "Calc"
+                        pos_hint: {"x": .8, "y": .45}
+                        on_release: root.get_data()
+                    MDTextField:
+                        id: input
+                        hint_text: "Insert the code"
+                        size_hint: None,None
+                        width: '200dp'
+                        pos_hint: {"x": .1, "y": .4}
+                        on_text_validate: root.get_data()
